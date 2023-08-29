@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  taking-backend:
+    container_name: taking-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_HOST: taking-db
+      DATABASE_PORT: 27017
+      DATABASE_NAME: taking
+      DATABASE_USERID: taking
+      DATABASE_USERPASS: taking
+      #SPRING_PROFILES_ACTIVE: prod
+      JAVA_OPTS: "-Xms256m -Xmx512m -XX:+UseG1GC"
+    ports:
+      - "8081:8888"
+#    volumes:
+#      - ./log:/log/spring
+  taking-db:
+    image: 'bitnami/mongodb:latest'
+    container_name: taking-db
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+    environment:
+      MONGODB_ROOT_PASSWORD: sdnfkls#@nkslDnf
+      MONGODB_DATABASE: taking
+      MONGODB_USERNAME: taking
+      MONGODB_PASSWORD: taking
+      PUID: 1001
+      PGID: 1001
+      TZ: Asia/Seoul
+    user: "1001:1001"
+    volumes:
+      - './mongodb_data:/bitnami'
+      - '/etc/localtime:/etc/localtime:ro'
