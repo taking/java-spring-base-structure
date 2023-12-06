@@ -1,7 +1,7 @@
 // https://space.taking.kr/p/main/automation/jobs?repo=java-spring-base-structure&branch=refs%2Fheads%2Fmain&status=actual
 
 job("Qodana") {
-    container("jetbrains/qodana-<linter>") {
+    container("jetbrains/qodana-jvm-community") {
         env["QODANA_TOKEN"] = Secrets("qodana-token")
         shellScript {
             content = """
