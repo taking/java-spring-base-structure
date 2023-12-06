@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 /**
@@ -18,7 +17,7 @@ import java.util.UUID;
  * </pre>
  */
 //@Repository
-public interface UserRepository extends MongoRepository<UserEntity, UUID> {
+public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     Page<UserEntity> findAll(Pageable pageable);
 

@@ -41,14 +41,14 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // 토큰 사용으로 csrf 설정 Disable 처리
         http
-            .csrf()
-                .disable()
-            .formLogin()
-                .disable()
-            .httpBasic()
-                .disable()
-            .cors()
-                .configurationSource(corsConfigurationSource);
+            .csrf(csrf -> csrf
+                    .disable())
+            .formLogin(login -> login
+                    .disable())
+            .httpBasic(basic -> basic
+                    .disable())
+            .cors(cors -> cors
+                    .configurationSource(corsConfigurationSource));
 
         // 엔트리 포인트
         http
@@ -67,14 +67,13 @@ public class WebSecurityConfiguration {
               .authenticated();
 
         http
-            // 권한이 없는 경우 Exception 핸들링 지정
-            .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler)
-                .authenticationEntryPoint(unauthorizedHandler)
-                .and()
-            .authenticationProvider(authenticationProvider)
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);  // 세션 사용하지 않음 (STATELESS 처리)
+        // 권한이 없는 경우 Exception 핸들링 지정
+        .exceptionHandling(handling -> handling
+            .accessDeniedHandler(accessDeniedHandler)
+            .authenticationEntryPoint(unauthorizedHandler))
+        .authenticationProvider(authenticationProvider)
+        .sessionManagement(management -> management
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS));  // 세션 사용하지 않음 (STATELESS 처리)
 
         http
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

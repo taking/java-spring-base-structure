@@ -1,13 +1,10 @@
 package kr.taking.backend.configuration.bean;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 
 /**
  * <pre>
@@ -25,17 +22,12 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "nw";
+        return "taking";
     }
 
     @Override
     public MongoClient mongoClient() {
         return MongoClients.create(mongoUri);
-    }
-
-    @Bean
-    public ValidatingMongoEventListener validatingMongoEventListener(LocalValidatorFactoryBean factory) {
-        return new ValidatingMongoEventListener(factory);
     }
 
 }

@@ -29,10 +29,10 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService {
 
-    @Value("${lab.cherry.nw.jwtSecret}")
+    @Value("${kr.taking.backend.jwtSecret}")
     private String jwtSecretKey;
 
-    @Value("${lab.cherry.nw.jwtExpirationMs}")
+    @Value("${kr.taking.backend.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public static final String AUTHORIZATION_HEADER = "Authorization";

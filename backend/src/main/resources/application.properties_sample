@@ -22,4 +22,4 @@ springdoc.swagger-ui.operations-sorter=alpha
 
 # echo 'kr.taking.backend-secret-base-by-taking'|base64
 kr.taking.backend.jwtSecret= a3IudGFraW5nLmJhY2tlbmQtc2VjcmV0LWJhc2UtYnktdGFraW5nCg==
-lab.cherry.nw.jwtExpirationMs= 86400000
+kr.taking.backend.jwtExpirationMs= 86400000

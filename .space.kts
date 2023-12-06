@@ -29,7 +29,7 @@ job("Taking Space Automation :: Code Review-Build-Deploy") {
 
             // dockerBuildPush {
 
-            //     val spaceRepo = "mycompany.registry.jetbrains.space/p/prjkey/mydocker/myimage"
+            //     val spaceRepo = "packages.taking.kr/p/main/containers/myimage"
             //     tags {
             //         +"$spaceRepo:0.${"$"}JB_SPACE_EXECUTION_NUMBER"
             //         +"$spaceRepo:lts"

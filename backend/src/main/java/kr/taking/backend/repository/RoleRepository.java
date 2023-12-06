@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 /**
@@ -18,7 +17,7 @@ import java.util.UUID;
  * </pre>
  */
 //@Repository
-public interface RoleRepository extends MongoRepository<RoleEntity, UUID> {
+public interface RoleRepository extends MongoRepository<RoleEntity, String> {
 
     Page<RoleEntity> findAll(Pageable pageable);
 

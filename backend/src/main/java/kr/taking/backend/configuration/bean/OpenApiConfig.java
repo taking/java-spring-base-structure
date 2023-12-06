@@ -25,12 +25,12 @@ public class OpenApiConfig {
     public OpenAPI openAPI() {
 
         Info info = new Info()
-                .title("NW API Document")
+                .title("Taking API Document")
                 .version("v0.0.1")
-                .description("NW Project Swagger Docs.")
-                .contact(new Contact().name("CherryLab").email("").url(""))
+                .description("Taking Project Swagger Docs.")
+                .contact(new Contact().name("Taking").email("").url(""))
                 .license(new License().name("Apache License Version 2.0").url("http://www.apache.org/licenses/LICENSE-2.0"))
-                .description("Develop Team : Cherry Lab");
+                .description("Develop Taking");
 
         String jwtSchemeName = "jwtAuth";
         SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwtSchemeName);

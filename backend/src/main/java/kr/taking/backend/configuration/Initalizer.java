@@ -74,20 +74,5 @@ public class Initalizer implements ApplicationRunner {
                 .enabled(true)
                 .build());
         }
-        
-        // TODO: 최종 개발 완료 후 삭제 처리 예정
-        if(userRepository.findByuserid("cherrylab").isEmpty()) {
-
-            RoleEntity roleEntity = roleRepository.findByName("ROLE_USER").get();
-        
-            userRepository.save(UserEntity.builder()
-                .userid("cherrylab")
-                .username("체리랩")
-                .password(passwordEncoder.encode("cherrylab"))
-                .email("cherrylab@test.com")
-                .role(roleEntity)
-                .enabled(true)
-                .build());
-        }
     }
 }

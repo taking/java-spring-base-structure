@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 
 /**
@@ -19,7 +18,7 @@ import java.util.UUID;
  * </pre>
  */
 //@Repository
-public interface OrgRepository extends MongoRepository<OrgEntity, UUID> {
+public interface OrgRepository extends MongoRepository<OrgEntity, String> {
 
     Page<OrgEntity> findAll(Pageable pageable);
 
