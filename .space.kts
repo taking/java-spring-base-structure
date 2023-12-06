@@ -26,7 +26,16 @@ job("Taking Space Automation :: Code Review-Build-Deploy") {
         try {
             println("Build #" + api.executionNumber())
             api.gradlew("build")
-        } catch (ex: Eception) {
+
+            // dockerBuildPush {
+
+            //     val spaceRepo = "mycompany.registry.jetbrains.space/p/prjkey/mydocker/myimage"
+            //     tags {
+            //         +"$spaceRepo:0.${"$"}JB_SPACE_EXECUTION_NUMBER"
+            //         +"$spaceRepo:lts"
+            //     }
+            // }
+        } catch (ex: Exception) {
             // get project Id
             val id = api.projectId()
             // get current build run number
@@ -48,5 +57,7 @@ job("Taking Space Automation :: Code Review-Build-Deploy") {
             )
         }
     }
+
+
   }
 }
