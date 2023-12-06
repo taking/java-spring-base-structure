@@ -19,16 +19,34 @@ job("Taking Space Automation :: Code Review-Build-Deploy") {
   }
 
   container(displayName = "Build Step", image = "eclipse-temurin:17.0.7_7-jdk") {
-    
+
     runIf("{{ isMainBranch }}")
 
     kotlinScript { api ->
-      // if (api.gitBranch() == "refs/heads/main") {
-        println("Build #" + api.executionNumber())
-        
-        api.gradlew("build")
-        api.space().projects.planning.issues.createIssue()
-      // }
+        try {
+            println("Build #" + api.executionNumber())
+            api.gradlew("build")
+        } catch (ex: Eception) {
+            // get project Id
+            val id = api.projectId()
+            // get current build run number
+            val runNumber = api.executionNumber()
+
+            //get all issue statuses
+            val statuses = api.space().projects.planning.issues.statuses.
+            getAllIssueStatuses(project = ProjectIdentifier.Id(id))
+            //get id of 'Open' issue status
+            val openStatusId = statuses.find { it.name == "Open" }?.id
+                ?: throw kotlin.Exception("The 'Open' state doesn't exist in the project")
+            // create issue with 'Open' status
+            api.space().projects.planning.issues.createIssue(
+                project = ProjectIdentifier.Id(id),
+                // generate name based on build run number
+                title = "Job 'Build and publish' #$runNumber failed",
+                description = "${ex.message}",
+                status = openStatusId
+            )
+        }
     }
   }
 }
