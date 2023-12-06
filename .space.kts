@@ -19,13 +19,13 @@ job("Taking Space Automation") {
   }
 
   container(displayName = "Build Step", image = "eclipse-temurin:17.0.7_7-jdk") {
-    kotlinScript { api ->
+    kotlinScript {
       runIf("{{ isMainBranch }}")
       // if (api.gitBranch() == "refs/heads/main") {
-        println("Build #" + api.executionNumber())
+        println("Build #" + executionNumber())
         
-        api.gradlew("build")
-        api.space().projects.planning.issues.createIssue()
+        gradlew("build")
+        space().projects.planning.issues.createIssue()
       // }
     }
   }
