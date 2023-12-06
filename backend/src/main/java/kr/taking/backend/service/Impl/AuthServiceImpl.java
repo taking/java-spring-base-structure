@@ -160,17 +160,17 @@ public class AuthServiceImpl implements AuthService {
      *
      * Author : taking(taking@duck.com)
      */
-    private Set<RoleEntity> getRoles(String [] roles){
-    Set<RoleEntity> userRoles = new HashSet<>();
-    for (String role : roles) {
-        Optional<RoleEntity> optionalRole = roleRepository.findByName(role);
-        if (optionalRole.isPresent()) {
-            userRoles.add(optionalRole.get()); // Extract the RoleEntity from Optional
-        } else {
-            // Handle the case when role is not found
-            // You can throw an exception or perform other error handling
-        }
-    }
-    return userRoles;
-    }
+    // private Set<RoleEntity> getRoles(String [] roles){
+    // Set<RoleEntity> userRoles = new HashSet<>();
+    // for (String role : roles) {
+    //     Optional<RoleEntity> optionalRole = roleRepository.findByName(role);
+    //     if (optionalRole.isPresent()) {
+    //         userRoles.add(optionalRole.get()); // Extract the RoleEntity from Optional
+    //     } else {
+    //         // Handle the case when role is not found
+    //         // You can throw an exception or perform other error handling
+    //     }
+    // }
+    // return userRoles;
+    // }
 }

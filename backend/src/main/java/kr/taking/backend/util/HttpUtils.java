@@ -19,10 +19,13 @@ public class HttpUtils {
 		switch (Method) {
 			case "GET":
 				_method = HttpMethod.GET;
+        break;
 			case "POST":
 				_method = HttpMethod.POST;
+        break;
 			case "DELETE":
 				_method = HttpMethod.DELETE;
+        break;
 			default:
 				_method = HttpMethod.GET;
 		}
