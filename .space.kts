@@ -19,8 +19,10 @@ job("Taking Space Automation :: Code Review-Build-Deploy") {
   }
 
   container(displayName = "Build Step", image = "eclipse-temurin:17.0.7_7-jdk") {
+    
+    runIf("{{ isMainBranch }}")
+
     kotlinScript { api ->
-      runIf("{{ isMainBranch }}")
       // if (api.gitBranch() == "refs/heads/main") {
         println("Build #" + api.executionNumber())
         
